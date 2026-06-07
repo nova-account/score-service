@@ -10,6 +10,7 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     musescore3 \
     xvfb \
+    xauth \
     fluid-soundfont-gm \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
