@@ -1,0 +1,24 @@
+name: Sync to Hugging Face Hub
+
+on:
+  push:
+    branches: [main]
+  # Allows manual triggering from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          # Push the main branch to the Hugging Face Space repository
+          git push --force https://beaw0w:$HF_TOKEN@huggingface.co/spaces/beaw0w/score-service main
