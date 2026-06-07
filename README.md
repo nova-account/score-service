@@ -1,8 +1,8 @@
 ---
 title: Score Service
 emoji: 🎼
-colorFrom: gold
-colorTo: yellow
+colorFrom: yellow
+colorTo: gray
 sdk: docker
 app_port: 7860
 pinned: false

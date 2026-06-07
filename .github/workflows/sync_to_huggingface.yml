@@ -20,5 +20,5 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # Push the main branch to the Hugging Face Space repository
-          git push --force https://beaw0w:$HF_TOKEN@huggingface.co/spaces/beaw0w/score-service main
+          # Push the current commit (HEAD) to the remote main branch on Hugging Face
+          git push --force https://beaw0w:$HF_TOKEN@huggingface.co/spaces/beaw0w/score-service HEAD:refs/heads/main
