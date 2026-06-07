@@ -87,10 +87,18 @@ async def convert_score(
         # 2. Call MuseScore 3 headlessly using Virtual Framebuffer (xvfb-run)
         # Headless Linux servers do not have active monitors/displays, so MuseScore
         # needs xvfb-run to simulate a graphics card display.
+        # Find the MuseScore binary dynamically
+        mscore_bin = "mscore"
+        for candidate in ["musescore3", "mscore3", "musescore", "mscore"]:
+            # Check if command is available on PATH
+            if subprocess.run(["which", candidate], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0:
+                mscore_bin = candidate
+                break
+
         cmd = [
             "xvfb-run",
             "-a", # Auto-allocate free server port for Virtual Screen
-            "mscore", # MuseScore binary
+            mscore_bin,
             str(input_file_path),
             "-o",
             str(output_file_path)
